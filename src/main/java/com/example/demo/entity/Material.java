@@ -1,9 +1,13 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
@@ -12,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Customer {
+public class Material {
 
     @Id
     @GeneratedValue
@@ -23,11 +27,12 @@ public class Customer {
     private String name;
 
     @Column
-    @NotBlank(message = "Please provide a serviceRendered")
-    private String serviceRendered;
+    private String type;
 
     @Column
-    @NotBlank(message = "Please provide an address")
-    private String address;
+    private BigDecimal price;
+
+    @Column
+    private String category;
 
 }

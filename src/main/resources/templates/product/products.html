@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: headerFragment">
+<head th:insert="~{layout :: headerFragment}">
 </head>
 <body>
 	<div id="container">
@@ -11,22 +11,24 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Name</th>
-					<th>Address</th>
-					<th>Service Rendered</th>
+					<th>SKU</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Category</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="customer : ${customers}">
-					<td th:text="${customer.id}">Text ...</td>
 					<td th:text="${customer.name}">Text ...</td>
-					<td th:text="${customer.address}">Text ...</td>
-					<td th:text="${customer.serviceRendered}">Text...</td>
+					<td th:text="${customer.sku}">Text ...</td>
+					<td th:text="${customer.description}">Text...</td>
+					<td th:text="${customer.price}">Text...</td>
+					<td th:text="${customer.category}">Text...</td>
 				</tr>
 			</tbody>
 		</table>
-		<div id="pagefoot" th:include="layout :: footerFragment">Footer
+		<div id="pagefoot" th:insert="~{layout :: headerFragment}">Footer
 		</div>
 	</div>
 	<!-- container -->

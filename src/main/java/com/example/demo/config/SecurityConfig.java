@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.controller.KeycloakLogoutHandler;
+import com.example.demo.service.KeycloakLogoutHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
