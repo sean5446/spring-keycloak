@@ -1,0 +1,56 @@
+
+server:
+  port: ${DEMO_PORT:8080}
+  error:
+    include-stacktrace: never # don't leak stack traces to the client
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DEMO_DB_URL:jdbc:postgresql://localhost:5432/postgres?currentSchema=demo}
+    username: ${DEMO_DB_USER:postgres}
+    password: ${DEMO_DB_PASS:password}
+  flyway:
+    locations: [classpath:db/migration, classpath:db/migration/**]
+    baseline-on-migrate: true
+  jpa:
+    open-in-view: true  # https://www.baeldung.com/spring-open-session-in-view
+  application:
+    name: demo
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${DEMO_ISSUER_URI:http://localhost:8080/realms/demo}  # must match keycloak setup
+      client:
+        registration:
+          keycloak:
+            client-id: login-app  # must match keycloak setup
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: ${DEMO_ISSUER_URI:http://localhost:8180/realms/demo}  # must match keycloak setup
+            user-name-attribute: preferred_username
+
+logging:
+  file:
+    name: logs/demo.log
+    max-size: 30MB
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,loggers
+
+info:
+  application:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+
+
