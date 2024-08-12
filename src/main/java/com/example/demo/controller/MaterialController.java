@@ -4,10 +4,9 @@ import com.example.demo.entity.Material;
 import com.example.demo.service.MaterialService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/materials")
@@ -20,8 +19,9 @@ public class MaterialController {
     }
 
     @GetMapping("")
-    public String list(Model model) {
+    public String list(Principal principal, Model model) {
         model.addAttribute("materials", materialService.findAll());
+        model.addAttribute("username", principal.getName());
         return "material/materials";
     }
 

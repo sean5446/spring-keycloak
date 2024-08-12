@@ -1,7 +1,7 @@
-
 <th:block th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" th:content="${_csrf.token}"/>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/global.css"/>
 </th:block>
@@ -12,3 +12,14 @@
     <div><span th:text="${username}">name</span> <a href="/logout">Logout</a></div>
 </div>
 
+<th:block th:fragment="htmx-csrf">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script>
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+        document.addEventListener('htmx:configRequest', function(event) {
+            event.detail.headers[csrfHeader] = csrfToken;
+        });
+    </script>
+</th:block>

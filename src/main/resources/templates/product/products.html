@@ -13,6 +13,8 @@
     <title>Products</title>
 </head>
 <body>
+<th:block th:replace="~{header :: htmx-csrf}"></th:block>
+
 <div id="global-header" th:replace="~{header :: globalHeader}"></div>
 
 <div id="products-header">
@@ -25,6 +27,7 @@
                hx-target="#search-results"
                hx-indicator=".htmx-indicator">
     </div>
+    <div class="htmx-indicator"></div>
     <div><a href="/products/json?page=1&limit=10">json</a></div>
 </div>
 
