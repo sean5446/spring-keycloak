@@ -1,0 +1,21 @@
+
+<tr th:each="product : ${products}">
+    <td th:text="${product.name}">Name</td>
+    <td th:text="${product.sku}">SKU</td>
+    <td th:text="${product.description}">Desc</td>
+    <td th:text="${product.price}">Price</td>
+    <td th:text="${product.category}">Category</td>
+</tr>
+<tr th:hx-get="@{/products/html?page={page}&limit={limit}(page=${page},limit=${limit})}"
+    hx-trigger="revealed"
+    hx-swap="afterend">
+    <td>name2</td>
+    <td>sku2</td>
+    <td>desc2</td>
+    <td>price2</td>
+    <td>category2</td>
+</tr>
+</tr>
+
+
+

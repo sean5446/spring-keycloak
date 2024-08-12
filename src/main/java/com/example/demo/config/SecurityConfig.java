@@ -33,7 +33,8 @@ class SecurityConfig {
     private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLES_CLAIM = "roles";
 
-    private static final String KEYCLOAK_ROLE = "customer";
+    // I made this role in keycloak
+    private static final String KC_CUSTOMER_ROLE = "customer";
 
     private final KeycloakLogoutHandler keycloakLogoutHandler;
 
@@ -60,12 +61,12 @@ class SecurityConfig {
     public SecurityFilterChain resourceServerFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(new AntPathRequestMatcher("/customers*"))
-                .hasRole(KEYCLOAK_ROLE)
-                .requestMatchers(new AntPathRequestMatcher("/"))
-                .permitAll()
+                .hasRole(KC_CUSTOMER_ROLE)
+//                .requestMatchers(new AntPathRequestMatcher("/"))
+//                .permitAll()
                 .anyRequest()
                 .authenticated());
-        http.oauth2ResourceServer((oauth2) -> oauth2
+        http.oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(Customizer.withDefaults()));
         http.oauth2Login(Customizer.withDefaults())
                 .logout(logout -> logout.addLogoutHandler(keycloakLogoutHandler).logoutSuccessUrl("/"));

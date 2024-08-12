@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
 import com.github.javafaker.Faker;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,6 +24,21 @@ public class ProductService {
 
     public Iterable<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    public Iterable<Product> getProducts(Integer limit, Integer page) {
+        Pageable pageable = PageRequest.of(
+                page != null ? page - 1 : 0,
+                limit == null ? 10 : limit);
+        return productRepository.findAll(pageable);
+    }
+
+    public long getCount() {
+        return productRepository.count();
+    }
+
+    public Iterable<Product> search(String search) {
+        return productRepository.findByNameContainingIgnoreCase(search);
     }
 
     public void addProducts() {

@@ -1,0 +1,7 @@
+<tr th:each="product : ${products}">
+    <td th:text="${product.name}">Name</td>
+    <td th:text="${product.sku}">SKU</td>
+    <td th:text="${product.description}">Desc</td>
+    <td th:text="${product.price}">Price</td>
+    <td th:text="${product.category}">Category</td>
+</tr>

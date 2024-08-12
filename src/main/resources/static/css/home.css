@@ -1,0 +1,18 @@
+
+#nav-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.nav-object {
+  text-align: center;
+  width: 150px;
+  height: 55px;
+  padding: 75px 0;
+  border: 1px solid black;
+}

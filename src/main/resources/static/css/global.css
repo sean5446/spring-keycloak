@@ -1,0 +1,18 @@
+
+/** {
+  border: 1px solid red;
+}*/
+
+body {
+  background: #fefefe;
+  padding: 0 24px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#global-header {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}

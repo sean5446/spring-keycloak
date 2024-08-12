@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:replace="~{header :: head}"></th:block>
+    <link rel="stylesheet" href="/css/home.css"/>
+    <title>Company Demo</title>
+</head>
+<body>
+<div id="global-header" th:replace="~{header :: globalHeader}"></div>
+
+<div id="nav-container">
+    <div class="nav-object">
+        <a th:href="@{/products}">Products</a>
+    </div>
+    <div class="nav-object">
+        <a th:href="@{/materials}">Materials</a>
+    </div>
+    <div class="nav-object">Lorem</div>
+    <div class="nav-object">Ipsum</div>
+    <div class="nav-object">Dolor</div>
+    <div class="nav-object">Sit</div>
+    <div class="nav-object">Amet</div>
+</div>
+
+</body>
+</html>
