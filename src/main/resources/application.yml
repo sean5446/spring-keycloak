@@ -47,6 +47,10 @@ logging:
   file:
     name: logs/demo.log
     max-size: 30MB
+#  level:
+#    org:
+#      springframework:
+#        security: DEBUG
 
 # turn on actuator
 management:

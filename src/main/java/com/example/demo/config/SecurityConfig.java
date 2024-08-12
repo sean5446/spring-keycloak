@@ -33,8 +33,11 @@ class SecurityConfig {
     private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLES_CLAIM = "roles";
 
-    // I made this role in keycloak
-    private static final String KC_CUSTOMER_ROLE = "customer";
+    // roles I made in keycloak
+    private static final String KC_ROLE_PRODUCT_READ = "product_read";
+    private static final String KC_ROLE_PRODUCT_WRITE = "product_write";
+    private static final String KC_ROLE_MATERIAL_READ = "material_read";
+    private static final String KC_ROLE_MATERIAL_WRITE = "material_write";
 
     private final KeycloakLogoutHandler keycloakLogoutHandler;
 
@@ -60,10 +63,14 @@ class SecurityConfig {
     @Bean
     public SecurityFilterChain resourceServerFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(new AntPathRequestMatcher("/customers*"))
-                .hasRole(KC_CUSTOMER_ROLE)
-//                .requestMatchers(new AntPathRequestMatcher("/"))
+                .requestMatchers(new AntPathRequestMatcher("/products**"))
+                .hasRole(KC_ROLE_PRODUCT_READ)
+                .requestMatchers(new AntPathRequestMatcher("/materials**"))
+                .hasRole(KC_ROLE_MATERIAL_READ)
+
+//                .requestMatchers(new AntPathRequestMatcher("/"))  // permits root path to all
 //                .permitAll()
+
                 .anyRequest()
                 .authenticated());
         http.oauth2ResourceServer(oauth2 -> oauth2

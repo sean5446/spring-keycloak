@@ -12,3 +12,7 @@ Keycloak 24.0.4 login example
 
 Keycloak server 25.0.2
 
+./kc.sh start-dev --http-port 8180
+
+./kc.sh export --file demo.json
+
